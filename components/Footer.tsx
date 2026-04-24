@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function Footer() {
   return (
@@ -7,14 +8,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-9 h-9 rounded-full bg-sage-600 flex items-center justify-center">
-                <SunIcon />
-              </div>
-              <div className="flex flex-col leading-none">
-                <span className="font-serif text-warm-100 font-semibold">Rise &amp; Shine</span>
-                <span className="text-[10px] text-sage-400 tracking-[0.15em] uppercase">Counselling</span>
-              </div>
+            <div className="mb-4">
+              <Image
+                src="/logo.png"
+                alt="Rise & Shine Counselling"
+                width={160}
+                height={56}
+                className="h-14 w-auto object-contain"
+              />
             </div>
             <p className="text-sm text-warm-400 leading-relaxed italic mb-3">
               "Helping You Rise, Supporting You to Shine."
@@ -93,20 +94,6 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  )
-}
-
-function SunIcon() {
-  return (
-    <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
-      <circle cx="12" cy="12" r="4" fill="white" />
-      <path
-        d="M12 2V4M12 20V22M4.22 4.22L5.64 5.64M18.36 18.36L19.78 19.78M2 12H4M20 12H22M4.22 19.78L5.64 18.36M18.36 5.64L19.78 4.22"
-        stroke="white"
-        strokeWidth="2"
-        strokeLinecap="round"
-      />
-    </svg>
   )
 }
 

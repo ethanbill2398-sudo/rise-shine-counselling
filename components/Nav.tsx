@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 
 const links = [
@@ -35,20 +36,17 @@ export default function Nav() {
       }`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="flex items-center justify-between h-16 md:h-20">
+        <div className="flex items-center justify-between h-24 md:h-28">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-9 h-9 rounded-full bg-sage-600 flex items-center justify-center shadow-sm group-hover:bg-sage-700 transition-colors">
-              <SunIcon />
-            </div>
-            <div className="flex flex-col leading-none">
-              <span className="font-serif font-semibold text-warm-900 text-base tracking-tight">
-                Rise &amp; Shine
-              </span>
-              <span className="text-[10px] text-sage-600 tracking-[0.15em] font-medium uppercase">
-                Counselling
-              </span>
-            </div>
+          <Link href="/" className="flex items-center group">
+            <Image
+              src="/logo.png"
+              alt="Rise & Shine Counselling"
+              width={220}
+              height={88}
+              className="h-20 w-auto object-contain"
+              priority
+            />
           </Link>
 
           {/* Desktop nav */}
@@ -111,20 +109,6 @@ export default function Nav() {
         </div>
       </div>
     </header>
-  )
-}
-
-function SunIcon() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="12" cy="12" r="4" fill="white" />
-      <path
-        d="M12 2V4M12 20V22M4.22 4.22L5.64 5.64M18.36 18.36L19.78 19.78M2 12H4M20 12H22M4.22 19.78L5.64 18.36M18.36 5.64L19.78 4.22"
-        stroke="white"
-        strokeWidth="2"
-        strokeLinecap="round"
-      />
-    </svg>
   )
 }
 
