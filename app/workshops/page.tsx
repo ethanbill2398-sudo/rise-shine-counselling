@@ -1,0 +1,422 @@
+'use client'
+
+import { useState } from 'react'
+import Link from 'next/link'
+
+export default function Workshops() {
+  return (
+    <>
+      {/* ── Hero ── */}
+      <section className="pt-28 pb-16 bg-gradient-to-b from-sage-100 to-warm-50">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
+          <p className="section-label mb-3">Workshop</p>
+          <h1 className="font-serif text-4xl md:text-5xl text-warm-900 leading-tight mb-5">
+            The Blossoming Workshop
+          </h1>
+          <p className="text-sage-700 text-lg font-medium italic mb-4">
+            From Reaction &rarr; Awareness &rarr; Lasting Change
+          </p>
+          <p className="text-warm-600 leading-relaxed max-w-xl mx-auto">
+            Based on a four-part framework for behavior, wellbeing, and resilience — blending brain
+            science, storytelling, and practical tools.
+          </p>
+        </div>
+      </section>
+
+      {/* ── Intro ── */}
+      <section className="py-16 bg-white">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
+          <div className="bg-warm-50 border border-warm-200 rounded-2xl p-8 text-center">
+            <p className="text-warm-700 leading-relaxed text-lg">
+              We all carry unseen weight — stress, emotional triggers, past experiences, and
+              patterns that once protected us but now hold us back. The Blossoming Workshop helps
+              participants understand stress responses and build healthier coping strategies for
+              lasting change.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── What You Learn & Interactive ── */}
+      <section className="py-20 bg-warm-50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Learn */}
+            <div className="card">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-11 h-11 rounded-xl bg-sage-100 flex items-center justify-center">
+                  <span className="text-2xl">📚</span>
+                </div>
+                <h2 className="font-serif text-xl text-warm-900">What Participants Learn</h2>
+              </div>
+              <ul className="space-y-3">
+                {learnPoints.map((pt) => (
+                  <li key={pt} className="flex items-start gap-3 text-warm-700 text-sm">
+                    <CheckCircle className="text-sage-500" />
+                    {pt}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Interactive */}
+            <div className="card">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-11 h-11 rounded-xl bg-gold-100 flex items-center justify-center">
+                  <span className="text-2xl">✨</span>
+                </div>
+                <h2 className="font-serif text-xl text-warm-900">Interactive &amp; Practical</h2>
+              </div>
+              <ul className="space-y-3">
+                {interactivePoints.map((pt) => (
+                  <li key={pt} className="flex items-start gap-3 text-warm-700 text-sm">
+                    <SproutIcon />
+                    {pt}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-6 bg-sage-50 border border-sage-200 rounded-xl p-4">
+                <p className="text-sm font-medium text-sage-800 italic">
+                  &ldquo;Participants leave with real-life strategies — not just inspiration.&rdquo;
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Formats ── */}
+      <section className="py-20 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-12">
+            <p className="section-label mb-3">Available Formats</p>
+            <h2 className="section-heading">Choose What Works for You</h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+            <div className="card border-2 border-sage-200 hover:border-sage-400 transition-colors">
+              <div className="text-4xl mb-4">⏰</div>
+              <h3 className="font-serif text-xl text-warm-900 mb-2">1-Hour Session</h3>
+              <p className="text-warm-600 text-sm leading-relaxed mb-4">
+                Perfect for Lunch &amp; Learns, staff meetings, or school sessions. A focused
+                session exploring one core module for immediate application.
+              </p>
+              <div className="bg-sage-50 rounded-xl p-3 text-xs text-sage-700">
+                <strong>Best for:</strong> Corporate teams, school groups, quick introductions
+              </div>
+            </div>
+            <div className="card border-2 border-gold-200 hover:border-gold-400 transition-colors">
+              <div className="text-4xl mb-4">🌅</div>
+              <h3 className="font-serif text-xl text-warm-900 mb-2">Full-Day Workshop</h3>
+              <p className="text-warm-600 text-sm leading-relaxed mb-2 font-medium text-sage-700">
+                9:00 a.m. – 3:30 p.m.
+              </p>
+              <p className="text-warm-600 text-sm leading-relaxed mb-4">
+                Covers all four core modules plus group reflection and take-home tools for lasting
+                impact. Ideal for PD days &amp; retreats.
+              </p>
+              <div className="bg-gold-50 rounded-xl p-3 text-xs text-gold-700">
+                <strong>Best for:</strong> PD days, wellness retreats, leadership teams
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Outcomes & Who it Serves ── */}
+      <section className="py-20 bg-warm-50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Outcomes */}
+            <div>
+              <p className="section-label mb-3">Key Outcomes</p>
+              <h2 className="font-serif text-2xl text-warm-900 mb-6">
+                What Participants Walk Away With
+              </h2>
+              <div className="space-y-3">
+                {outcomes.map((o) => (
+                  <div key={o} className="flex items-start gap-3 bg-white rounded-xl p-4 border border-warm-200">
+                    <CheckCircle className="text-sage-500 mt-0.5" />
+                    <span className="text-warm-700 text-sm">{o}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Who it Serves */}
+            <div>
+              <p className="section-label mb-3">Who This Serves</p>
+              <h2 className="font-serif text-2xl text-warm-900 mb-6">
+                Built for Teams &amp; Organizations
+              </h2>
+              <div className="grid grid-cols-2 gap-3">
+                {audiences.map((a) => (
+                  <div key={a.label} className="bg-white rounded-xl p-4 border border-warm-200 text-center hover:border-sage-300 transition-colors">
+                    <div className="text-2xl mb-2">{a.emoji}</div>
+                    <div className="text-xs font-medium text-warm-700">{a.label}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Not a lecture banner ── */}
+      <section className="py-8 bg-sage-800">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+          <p className="text-white font-medium text-lg">
+            <em>Not a lecture.</em>{' '}
+            <span className="text-sage-300 text-base font-normal">
+              Brain science made simple &bull; Emotional awareness training &bull; Practical tools &bull; Real-life storytelling
+            </span>
+          </p>
+        </div>
+      </section>
+
+      {/* ── Presenter ── */}
+      <section className="py-16 bg-white">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 text-center">
+          <div className="card border-warm-200 inline-block text-left w-full">
+            <div className="flex items-center gap-4 mb-3">
+              <div className="w-12 h-12 rounded-full bg-sage-100 flex items-center justify-center font-serif text-sage-700 font-bold text-lg">
+                KP
+              </div>
+              <div>
+                <div className="font-serif text-warm-900 font-semibold">Kendall Pruden, MCPC</div>
+                <div className="text-xs text-warm-500">Founder, Rise &amp; Shine Counselling</div>
+              </div>
+            </div>
+            <p className="text-warm-600 text-sm leading-relaxed">
+              Kendall brings warmth, expertise, and lived understanding to every workshop. Her
+              sessions are engaging, practical, and grounded in evidence — leaving attendees with
+              tools they can actually use.
+            </p>
+            <div className="mt-4 flex gap-4 text-sm text-warm-500">
+              <a href="mailto:support@riseandshinecounselling.net" className="hover:text-sage-600 transition-colors flex items-center gap-1">
+                ✉️ support@riseandshinecounselling.net
+              </a>
+              <a href="tel:3066314331" className="hover:text-sage-600 transition-colors flex items-center gap-1">
+                📞 (306) 631-4331
+              </a>
+            </div>
+            <p className="text-xs text-warm-400 mt-3 italic">
+              * Contact directly for bookings, pricing, or more information
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Registration Form ── */}
+      <section id="register" className="py-20 bg-sage-50">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-10">
+            <p className="section-label mb-3">Register Interest</p>
+            <h2 className="section-heading mb-4">Bring the Workshop to Your Team</h2>
+            <p className="text-warm-600">
+              Fill in your details below and Kendall will reach out personally to discuss your
+              needs, availability, and pricing.
+            </p>
+          </div>
+          <WorkshopForm />
+        </div>
+      </section>
+    </>
+  )
+}
+
+// ── Workshop Registration Form ──
+function WorkshopForm() {
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [errorMsg, setErrorMsg] = useState('')
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    setStatus('loading')
+    setErrorMsg('')
+
+    const form = e.currentTarget
+    const data = {
+      name: (form.elements.namedItem('name') as HTMLInputElement).value,
+      organization: (form.elements.namedItem('organization') as HTMLInputElement).value,
+      email: (form.elements.namedItem('email') as HTMLInputElement).value,
+      phone: (form.elements.namedItem('phone') as HTMLInputElement).value,
+      format: (form.querySelector('input[name="format"]:checked') as HTMLInputElement)?.value ?? '',
+      groupSize: (form.elements.namedItem('groupSize') as HTMLInputElement).value,
+      message: (form.elements.namedItem('message') as HTMLTextAreaElement).value,
+      formType: 'workshop',
+    }
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      })
+      if (!res.ok) throw new Error('Submission failed')
+      setStatus('success')
+    } catch {
+      setStatus('error')
+      setErrorMsg('Something went wrong. Please try calling or emailing Kendall directly.')
+    }
+  }
+
+  if (status === 'success') {
+    return (
+      <div className="bg-white rounded-3xl border border-sage-200 shadow-sm p-10 text-center">
+        <div className="w-16 h-16 rounded-full bg-sage-100 flex items-center justify-center mx-auto mb-5">
+          <span className="text-3xl">🌸</span>
+        </div>
+        <h3 className="font-serif text-2xl text-warm-900 mb-3">Thanks for reaching out!</h3>
+        <p className="text-warm-600 leading-relaxed mb-6">
+          Kendall will be in touch soon to discuss your workshop request. In the meantime, feel free
+          to call or text at <a href="tel:3066314331" className="text-sage-600 font-medium">(306) 631-4331</a>.
+        </p>
+        <button
+          onClick={() => setStatus('idle')}
+          className="text-sm text-warm-400 hover:text-warm-600 transition-colors underline"
+        >
+          Submit another request
+        </button>
+      </div>
+    )
+  }
+
+  return (
+    <form
+      onSubmit={handleSubmit}
+      className="bg-white rounded-3xl border border-warm-200 shadow-sm p-8 md:p-10 space-y-5"
+    >
+      <div className="grid sm:grid-cols-2 gap-5">
+        <div>
+          <label className="label" htmlFor="ws-name">Your Name *</label>
+          <input id="ws-name" name="name" type="text" required className="input-field" placeholder="Jane Smith" />
+        </div>
+        <div>
+          <label className="label" htmlFor="ws-org">Organization / School</label>
+          <input id="ws-org" name="organization" type="text" className="input-field" placeholder="Company or school name" />
+        </div>
+      </div>
+
+      <div className="grid sm:grid-cols-2 gap-5">
+        <div>
+          <label className="label" htmlFor="ws-email">Email Address *</label>
+          <input id="ws-email" name="email" type="email" required className="input-field" placeholder="you@example.com" />
+        </div>
+        <div>
+          <label className="label" htmlFor="ws-phone">Phone Number *</label>
+          <input id="ws-phone" name="phone" type="tel" required className="input-field" placeholder="(306) 000-0000" />
+        </div>
+      </div>
+
+      {/* Format selection */}
+      <div>
+        <label className="label">Preferred Format *</label>
+        <div className="grid sm:grid-cols-2 gap-3">
+          {[
+            { value: '1-hour', label: '1-Hour Session', sub: 'Lunch & Learn / Staff Meeting' },
+            { value: 'full-day', label: 'Full-Day Workshop', sub: '9:00 a.m. – 3:30 p.m.' },
+          ].map((opt) => (
+            <label
+              key={opt.value}
+              className="flex items-start gap-3 cursor-pointer p-4 rounded-xl border border-warm-200 hover:border-sage-400 transition-colors has-[:checked]:border-sage-500 has-[:checked]:bg-sage-50"
+            >
+              <input type="radio" name="format" value={opt.value} className="mt-1 accent-sage-600" required />
+              <div>
+                <div className="text-sm font-medium text-warm-900">{opt.label}</div>
+                <div className="text-xs text-warm-500">{opt.sub}</div>
+              </div>
+            </label>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <label className="label" htmlFor="ws-size">Estimated Group Size</label>
+        <input id="ws-size" name="groupSize" type="text" className="input-field" placeholder="e.g. 15–20 people" />
+      </div>
+
+      <div>
+        <label className="label" htmlFor="ws-message">Anything else Kendall should know?</label>
+        <textarea
+          id="ws-message"
+          name="message"
+          rows={4}
+          className="input-field resize-none"
+          placeholder="Preferred dates, special considerations, or questions..."
+        />
+      </div>
+
+      {errorMsg && (
+        <p className="text-red-600 text-sm bg-red-50 border border-red-200 rounded-xl p-3">
+          {errorMsg}
+        </p>
+      )}
+
+      <button
+        type="submit"
+        disabled={status === 'loading'}
+        className="btn-primary w-full justify-center py-3.5 disabled:opacity-60 disabled:cursor-not-allowed"
+      >
+        {status === 'loading' ? 'Sending...' : 'Submit Workshop Request'}
+      </button>
+
+      <p className="text-center text-xs text-warm-400">
+        * Kendall will call you to confirm details and discuss pricing. This is not a confirmed
+        booking.
+      </p>
+    </form>
+  )
+}
+
+// ── Data ──
+const learnPoints = [
+  'Recognizing emotional triggers early',
+  'How the brain reacts under stress',
+  'Preventing burnout & emotional shutdown',
+  'Strengthening the Four Pillars of Wellbeing',
+  'Building healthy coping strategies',
+  'Creating small, sustainable life changes',
+]
+
+const interactivePoints = [
+  'Guided reflection & trigger mapping',
+  'Break-out worksheet exercises',
+  '1–10 awareness scale practice',
+  'Affirmation & intervention tools',
+]
+
+const outcomes = [
+  'Improved stress management',
+  'Stronger emotional regulation',
+  'Increased mental clarity',
+  'Healthier coping strategies',
+  'Greater wellbeing awareness',
+]
+
+const audiences = [
+  { emoji: '🏢', label: 'Corporate Teams & Leadership' },
+  { emoji: '🍎', label: 'Educators & School Staff' },
+  { emoji: '🏥', label: 'Healthcare Professionals' },
+  { emoji: '🚒', label: 'First Responders' },
+  { emoji: '🧑‍🎓', label: 'Youth & Young Adults' },
+  { emoji: '🤝', label: 'Community Organizations' },
+]
+
+// ── Icons ──
+function CheckCircle({ className }: { className?: string }) {
+  return (
+    <svg className={`w-5 h-5 flex-shrink-0 ${className}`} viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2" />
+      <path d="M9 12L11 14L15 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
+function SproutIcon() {
+  return (
+    <svg className="w-5 h-5 text-gold-500 flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none">
+      <path d="M12 22V12M12 12C12 7 8 4 3 4C3 9 6 12 12 12ZM12 12C12 7 16 4 21 4C21 9 18 12 12 12Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+}
