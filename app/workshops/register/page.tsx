@@ -1,8 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useRef } from 'react'
 import Link from 'next/link'
-import type { Metadata } from 'next'
 
 export default function WorkshopRegister() {
   return (
@@ -165,122 +164,20 @@ export default function WorkshopRegister() {
   )
 }
 
-// ── Registration Form ──
+// ── JotForm Embed ──
 function RegisterForm() {
-  const [status, setStatus] = useState<'idle' | 'success'>('idle')
+  const containerRef = useRef<HTMLDivElement>(null)
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-    const form = e.currentTarget
-    const name = (form.elements.namedItem('name') as HTMLInputElement).value
-    const email = (form.elements.namedItem('email') as HTMLInputElement).value
-    const phone = (form.elements.namedItem('phone') as HTMLInputElement).value
-    const tickets = (form.elements.namedItem('tickets') as HTMLInputElement).value
-    const format = (form.querySelector('input[name="format"]:checked') as HTMLInputElement)?.value ?? ''
-    const notes = (form.elements.namedItem('notes') as HTMLTextAreaElement).value
+  useEffect(() => {
+    const script = document.createElement('script')
+    script.src = 'https://form.jotform.com/jssform/261136609104248'
+    script.type = 'text/javascript'
+    if (containerRef.current) {
+      containerRef.current.appendChild(script)
+    }
+  }, [])
 
-    const subject = encodeURIComponent(`Workshop Registration — ${name} (${tickets} ticket${tickets === '1' ? '' : 's'})`)
-    const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nTickets: ${tickets}\nFormat preference: ${format || 'Not specified'}\n\nNotes:\n${notes || 'None'}\n\n---\nReminder: Send e-transfer to support@riseandshinecounselling.net with "${name} — ${tickets} ticket${tickets === '1' ? '' : 's'}" in the notes.`
-    )
-    window.open(`mailto:support@riseandshinecounselling.net?subject=${subject}&body=${body}`)
-    setStatus('success')
-  }
-
-  if (status === 'success') {
-    return (
-      <div className="bg-white rounded-3xl border border-sage-200 shadow-sm p-10 text-center">
-        <div className="w-16 h-16 rounded-full bg-sage-100 flex items-center justify-center mx-auto mb-5">
-          <CheckCircle className="w-8 h-8 text-sage-600" />
-        </div>
-        <h3 className="font-serif text-2xl text-warm-900 mb-3">Almost there!</h3>
-        <p className="text-warm-600 leading-relaxed mb-4">
-          Your email client opened with your details. Once you send the email, don&apos;t forget to
-          also send your <strong>e-transfer</strong> to secure your spot.
-        </p>
-        <div className="bg-gold-50 border border-gold-200 rounded-xl p-4 text-sm text-warm-700 mb-6">
-          Send e-transfer to{' '}
-          <strong className="text-warm-900">support@riseandshinecounselling.net</strong>
-          {' '}with your <strong>name + number of tickets</strong> in the notes.
-        </div>
-        <button
-          onClick={() => setStatus('idle')}
-          className="text-sm text-warm-400 hover:text-warm-600 transition-colors underline"
-        >
-          Register another person
-        </button>
-      </div>
-    )
-  }
-
-  return (
-    <form
-      onSubmit={handleSubmit}
-      className="bg-white rounded-3xl border border-warm-200 shadow-sm p-8 md:p-10 space-y-5"
-    >
-      <div className="grid sm:grid-cols-2 gap-5">
-        <div>
-          <label className="label" htmlFor="reg-name">Full Name *</label>
-          <input id="reg-name" name="name" type="text" required className="input-field" placeholder="Jane Smith" />
-        </div>
-        <div>
-          <label className="label" htmlFor="reg-tickets">Number of Tickets *</label>
-          <input id="reg-tickets" name="tickets" type="number" min="1" required className="input-field" placeholder="1" defaultValue="1" />
-        </div>
-      </div>
-
-      <div className="grid sm:grid-cols-2 gap-5">
-        <div>
-          <label className="label" htmlFor="reg-email">Email Address *</label>
-          <input id="reg-email" name="email" type="email" required className="input-field" placeholder="you@example.com" />
-        </div>
-        <div>
-          <label className="label" htmlFor="reg-phone">Phone Number</label>
-          <input id="reg-phone" name="phone" type="tel" className="input-field" placeholder="(306) 000-0000" />
-        </div>
-      </div>
-
-      <div>
-        <label className="label">Format Preference</label>
-        <div className="grid sm:grid-cols-2 gap-3">
-          {[
-            { value: 'full-day', label: 'Full-Day Workshop', sub: '9:00 a.m. – 3:30 p.m.' },
-            { value: '1-hour', label: '1-Hour Session', sub: 'Lunch & Learn / Staff Meeting' },
-          ].map((opt) => (
-            <label
-              key={opt.value}
-              className="flex items-start gap-3 cursor-pointer p-4 rounded-xl border border-warm-200 hover:border-sage-400 transition-colors has-[:checked]:border-sage-500 has-[:checked]:bg-sage-50"
-            >
-              <input type="radio" name="format" value={opt.value} className="mt-1 accent-sage-600" />
-              <div>
-                <div className="text-sm font-medium text-warm-900">{opt.label}</div>
-                <div className="text-xs text-warm-500">{opt.sub}</div>
-              </div>
-            </label>
-          ))}
-        </div>
-      </div>
-
-      <div>
-        <label className="label" htmlFor="reg-notes">Any questions or notes?</label>
-        <textarea
-          id="reg-notes"
-          name="notes"
-          rows={3}
-          className="input-field resize-none"
-          placeholder="Dietary needs, accessibility questions, etc."
-        />
-      </div>
-
-      <button type="submit" className="btn-primary w-full justify-center py-3.5">
-        Register Now
-      </button>
-
-      <p className="text-center text-xs text-warm-400">
-        After submitting, you&apos;ll be prompted to send an e-transfer to complete your registration.
-      </p>
-    </form>
-  )
+  return <div ref={containerRef} />
 }
 
 // ── Data ──
@@ -312,9 +209,9 @@ const details = [
 ]
 
 // ── Icons ──
-function CheckCircle({ className }: { className?: string }) {
+function CheckCircle() {
   return (
-    <svg className={`w-5 h-5 flex-shrink-0 text-sage-500 ${className ?? ''}`} viewBox="0 0 24 24" fill="none">
+    <svg className="w-5 h-5 flex-shrink-0 text-sage-500" viewBox="0 0 24 24" fill="none">
       <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2" />
       <path d="M9 12L11 14L15 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>

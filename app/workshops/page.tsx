@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useRef } from 'react'
 import Link from 'next/link'
 
 export default function Workshops() {
@@ -228,124 +228,20 @@ export default function Workshops() {
   )
 }
 
-// ── Workshop Registration Form ──
+// ── JotForm Embed ──
 function WorkshopForm() {
-  const [status, setStatus] = useState<'idle' | 'success'>('idle')
+  const containerRef = useRef<HTMLDivElement>(null)
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-    const form = e.currentTarget
-    const name = (form.elements.namedItem('name') as HTMLInputElement).value
-    const organization = (form.elements.namedItem('organization') as HTMLInputElement).value
-    const email = (form.elements.namedItem('email') as HTMLInputElement).value
-    const phone = (form.elements.namedItem('phone') as HTMLInputElement).value
-    const format = (form.querySelector('input[name="format"]:checked') as HTMLInputElement)?.value ?? ''
-    const groupSize = (form.elements.namedItem('groupSize') as HTMLInputElement).value
-    const message = (form.elements.namedItem('message') as HTMLTextAreaElement).value
+  useEffect(() => {
+    const script = document.createElement('script')
+    script.src = 'https://form.jotform.com/jssform/261136609104248'
+    script.type = 'text/javascript'
+    if (containerRef.current) {
+      containerRef.current.appendChild(script)
+    }
+  }, [])
 
-    const subject = encodeURIComponent(`Workshop Request from ${name}`)
-    const body = encodeURIComponent(
-      `Name: ${name}\nOrganization: ${organization || 'N/A'}\nPhone: ${phone}\nEmail: ${email}\nFormat: ${format || 'Not specified'}\nGroup size: ${groupSize || 'Not specified'}\n\nNotes:\n${message || 'None'}`
-    )
-    window.open(`mailto:support@riseandshinecounselling.net?subject=${subject}&body=${body}`)
-    setStatus('success')
-  }
-
-  if (status === 'success') {
-    return (
-      <div className="bg-white rounded-3xl border border-sage-200 shadow-sm p-10 text-center">
-        <div className="w-16 h-16 rounded-full bg-sage-100 flex items-center justify-center mx-auto mb-5">
-          <CheckCircle className="w-8 h-8 text-sage-600" />
-        </div>
-        <h3 className="font-serif text-2xl text-warm-900 mb-3">Request sent!</h3>
-        <p className="text-warm-600 leading-relaxed mb-6">
-          Your email client opened with your details pre-filled. Once sent, Kendall will be in touch
-          to discuss your workshop. You can also call or text at{' '}
-          <a href="tel:3066314331" className="text-sage-600 font-medium">(306) 631-4331</a>.
-        </p>
-        <button
-          onClick={() => setStatus('idle')}
-          className="text-sm text-warm-400 hover:text-warm-600 transition-colors underline"
-        >
-          Submit another request
-        </button>
-      </div>
-    )
-  }
-
-  return (
-    <form
-      onSubmit={handleSubmit}
-      className="bg-white rounded-3xl border border-warm-200 shadow-sm p-8 md:p-10 space-y-5"
-    >
-      <div className="grid sm:grid-cols-2 gap-5">
-        <div>
-          <label className="label" htmlFor="ws-name">Your Name *</label>
-          <input id="ws-name" name="name" type="text" required className="input-field" placeholder="Jane Smith" />
-        </div>
-        <div>
-          <label className="label" htmlFor="ws-org">Organization / School</label>
-          <input id="ws-org" name="organization" type="text" className="input-field" placeholder="Company or school name" />
-        </div>
-      </div>
-
-      <div className="grid sm:grid-cols-2 gap-5">
-        <div>
-          <label className="label" htmlFor="ws-email">Email Address *</label>
-          <input id="ws-email" name="email" type="email" required className="input-field" placeholder="you@example.com" />
-        </div>
-        <div>
-          <label className="label" htmlFor="ws-phone">Phone Number *</label>
-          <input id="ws-phone" name="phone" type="tel" required className="input-field" placeholder="(306) 000-0000" />
-        </div>
-      </div>
-
-      <div>
-        <label className="label">Preferred Format *</label>
-        <div className="grid sm:grid-cols-2 gap-3">
-          {[
-            { value: '1-hour', label: '1-Hour Session', sub: 'Lunch & Learn / Staff Meeting' },
-            { value: 'full-day', label: 'Full-Day Workshop', sub: '9:00 a.m. – 3:30 p.m.' },
-          ].map((opt) => (
-            <label
-              key={opt.value}
-              className="flex items-start gap-3 cursor-pointer p-4 rounded-xl border border-warm-200 hover:border-sage-400 transition-colors has-[:checked]:border-sage-500 has-[:checked]:bg-sage-50"
-            >
-              <input type="radio" name="format" value={opt.value} className="mt-1 accent-sage-600" required />
-              <div>
-                <div className="text-sm font-medium text-warm-900">{opt.label}</div>
-                <div className="text-xs text-warm-500">{opt.sub}</div>
-              </div>
-            </label>
-          ))}
-        </div>
-      </div>
-
-      <div>
-        <label className="label" htmlFor="ws-size">Estimated Group Size</label>
-        <input id="ws-size" name="groupSize" type="text" className="input-field" placeholder="e.g. 15–20 people" />
-      </div>
-
-      <div>
-        <label className="label" htmlFor="ws-message">Anything else Kendall should know?</label>
-        <textarea
-          id="ws-message"
-          name="message"
-          rows={4}
-          className="input-field resize-none"
-          placeholder="Preferred dates, special considerations, or questions..."
-        />
-      </div>
-
-      <button type="submit" className="btn-primary w-full justify-center py-3.5">
-        Submit Workshop Request
-      </button>
-
-      <p className="text-center text-xs text-warm-400">
-        Kendall will call you to confirm details and discuss pricing. This is not a confirmed booking.
-      </p>
-    </form>
-  )
+  return <div ref={containerRef} />
 }
 
 // ── Data ──
