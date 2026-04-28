@@ -93,21 +93,20 @@ export default function WorkshopRegister() {
             <div className="bg-white border border-gold-300 rounded-xl p-5 font-mono text-sm text-warm-800 mb-5 select-all">
               support@riseandshinecounselling.net
             </div>
-            <div className="space-y-3 text-warm-700 text-sm">
-              <div className="flex items-start gap-2">
-                <span className="font-bold text-gold-700 flex-shrink-0">1.</span>
-                In the <strong>message/notes field</strong> of your e-transfer, include your{' '}
-                <strong>full name</strong> and <strong>number of tickets</strong> (e.g. &ldquo;Jane Smith — 2 tickets&rdquo;).
-              </div>
-              <div className="flex items-start gap-2">
-                <span className="font-bold text-gold-700 flex-shrink-0">2.</span>
-                Your spot will be confirmed once Kendall receives your payment.
-              </div>
-              <div className="flex items-start gap-2">
-                <span className="font-bold text-gold-700 flex-shrink-0">3.</span>
-                At the venue, simply give your name at the door — you&apos;ll be checked off the list.
-              </div>
-            </div>
+            <ol className="space-y-3 text-warm-700 text-sm list-none">
+              <li className="flex gap-3">
+                <span className="font-bold text-gold-700 flex-shrink-0 w-4">1.</span>
+                <p>In the <strong>message/notes field</strong> of your e-transfer, include your <strong>full name</strong> and <strong>number of tickets</strong> (e.g. &ldquo;Jane Smith — 2 tickets&rdquo;).</p>
+              </li>
+              <li className="flex gap-3">
+                <span className="font-bold text-gold-700 flex-shrink-0 w-4">2.</span>
+                <p>Your spot will be confirmed once Kendall receives your payment.</p>
+              </li>
+              <li className="flex gap-3">
+                <span className="font-bold text-gold-700 flex-shrink-0 w-4">3.</span>
+                <p>At the venue, simply give your name at the door — you&apos;ll be checked off the list.</p>
+              </li>
+            </ol>
           </div>
         </div>
       </section>
