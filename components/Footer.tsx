@@ -79,8 +79,7 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <LocationIcon className="mt-0.5 flex-shrink-0 text-sage-500" />
                 <div>
-                  <div>325 Herold Rd #1</div>
-                  <div>Saskatoon, SK S7V 0A9</div>
+                  <div>Briarwood, Saskatoon, SK</div>
                   <div className="text-xs text-warm-600 mt-1">In-person &amp; online via Zoom</div>
                 </div>
               </li>

@@ -45,7 +45,7 @@ export default function Workshops() {
             <div className="card">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-11 h-11 rounded-xl bg-sage-100 flex items-center justify-center">
-                  <span className="text-2xl">📚</span>
+                  <BookIcon />
                 </div>
                 <h2 className="font-serif text-xl text-warm-900">What Participants Learn</h2>
               </div>
@@ -63,7 +63,7 @@ export default function Workshops() {
             <div className="card">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-11 h-11 rounded-xl bg-gold-100 flex items-center justify-center">
-                  <span className="text-2xl">✨</span>
+                  <StarIcon />
                 </div>
                 <h2 className="font-serif text-xl text-warm-900">Interactive &amp; Practical</h2>
               </div>
@@ -95,7 +95,9 @@ export default function Workshops() {
 
           <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
             <div className="card border-2 border-sage-200 hover:border-sage-400 transition-colors">
-              <div className="text-4xl mb-4">⏰</div>
+              <div className="w-10 h-10 rounded-lg bg-sage-100 flex items-center justify-center mb-4">
+                <ClockIcon />
+              </div>
               <h3 className="font-serif text-xl text-warm-900 mb-2">1-Hour Session</h3>
               <p className="text-warm-600 text-sm leading-relaxed mb-4">
                 Perfect for Lunch &amp; Learns, staff meetings, or school sessions. A focused
@@ -106,7 +108,9 @@ export default function Workshops() {
               </div>
             </div>
             <div className="card border-2 border-gold-200 hover:border-gold-400 transition-colors">
-              <div className="text-4xl mb-4">🌅</div>
+              <div className="w-10 h-10 rounded-lg bg-gold-100 flex items-center justify-center mb-4">
+                <SunriseIcon />
+              </div>
               <h3 className="font-serif text-xl text-warm-900 mb-2">Full-Day Workshop</h3>
               <p className="text-warm-600 text-sm leading-relaxed mb-2 font-medium text-sage-700">
                 9:00 a.m. – 3:30 p.m.
@@ -151,9 +155,8 @@ export default function Workshops() {
               </h2>
               <div className="grid grid-cols-2 gap-3">
                 {audiences.map((a) => (
-                  <div key={a.label} className="bg-white rounded-xl p-4 border border-warm-200 text-center hover:border-sage-300 transition-colors">
-                    <div className="text-2xl mb-2">{a.emoji}</div>
-                    <div className="text-xs font-medium text-warm-700">{a.label}</div>
+                  <div key={a} className="bg-white rounded-xl p-4 border border-warm-200 text-center hover:border-sage-300 transition-colors">
+                    <div className="text-xs font-medium text-warm-700">{a}</div>
                   </div>
                 ))}
               </div>
@@ -192,12 +195,12 @@ export default function Workshops() {
               sessions are engaging, practical, and grounded in evidence — leaving attendees with
               tools they can actually use.
             </p>
-            <div className="mt-4 flex gap-4 text-sm text-warm-500">
-              <a href="mailto:support@riseandshinecounselling.net" className="hover:text-sage-600 transition-colors flex items-center gap-1">
-                ✉️ support@riseandshinecounselling.net
+            <div className="mt-4 flex flex-wrap gap-4 text-sm text-warm-500">
+              <a href="mailto:support@riseandshinecounselling.net" className="hover:text-sage-600 transition-colors">
+                support@riseandshinecounselling.net
               </a>
-              <a href="tel:3066314331" className="hover:text-sage-600 transition-colors flex items-center gap-1">
-                📞 (306) 631-4331
+              <a href="tel:3066314331" className="hover:text-sage-600 transition-colors">
+                (306) 631-4331
               </a>
             </div>
             <p className="text-xs text-warm-400 mt-3 italic">
@@ -227,50 +230,38 @@ export default function Workshops() {
 
 // ── Workshop Registration Form ──
 function WorkshopForm() {
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
-  const [errorMsg, setErrorMsg] = useState('')
+  const [status, setStatus] = useState<'idle' | 'success'>('idle')
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    setStatus('loading')
-    setErrorMsg('')
-
     const form = e.currentTarget
-    const data = {
-      name: (form.elements.namedItem('name') as HTMLInputElement).value,
-      organization: (form.elements.namedItem('organization') as HTMLInputElement).value,
-      email: (form.elements.namedItem('email') as HTMLInputElement).value,
-      phone: (form.elements.namedItem('phone') as HTMLInputElement).value,
-      format: (form.querySelector('input[name="format"]:checked') as HTMLInputElement)?.value ?? '',
-      groupSize: (form.elements.namedItem('groupSize') as HTMLInputElement).value,
-      message: (form.elements.namedItem('message') as HTMLTextAreaElement).value,
-      formType: 'workshop',
-    }
+    const name = (form.elements.namedItem('name') as HTMLInputElement).value
+    const organization = (form.elements.namedItem('organization') as HTMLInputElement).value
+    const email = (form.elements.namedItem('email') as HTMLInputElement).value
+    const phone = (form.elements.namedItem('phone') as HTMLInputElement).value
+    const format = (form.querySelector('input[name="format"]:checked') as HTMLInputElement)?.value ?? ''
+    const groupSize = (form.elements.namedItem('groupSize') as HTMLInputElement).value
+    const message = (form.elements.namedItem('message') as HTMLTextAreaElement).value
 
-    try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      })
-      if (!res.ok) throw new Error('Submission failed')
-      setStatus('success')
-    } catch {
-      setStatus('error')
-      setErrorMsg('Something went wrong. Please try calling or emailing Kendall directly.')
-    }
+    const subject = encodeURIComponent(`Workshop Request from ${name}`)
+    const body = encodeURIComponent(
+      `Name: ${name}\nOrganization: ${organization || 'N/A'}\nPhone: ${phone}\nEmail: ${email}\nFormat: ${format || 'Not specified'}\nGroup size: ${groupSize || 'Not specified'}\n\nNotes:\n${message || 'None'}`
+    )
+    window.open(`mailto:support@riseandshinecounselling.net?subject=${subject}&body=${body}`)
+    setStatus('success')
   }
 
   if (status === 'success') {
     return (
       <div className="bg-white rounded-3xl border border-sage-200 shadow-sm p-10 text-center">
         <div className="w-16 h-16 rounded-full bg-sage-100 flex items-center justify-center mx-auto mb-5">
-          <span className="text-3xl">🌸</span>
+          <CheckCircle className="w-8 h-8 text-sage-600" />
         </div>
-        <h3 className="font-serif text-2xl text-warm-900 mb-3">Thanks for reaching out!</h3>
+        <h3 className="font-serif text-2xl text-warm-900 mb-3">Request sent!</h3>
         <p className="text-warm-600 leading-relaxed mb-6">
-          Kendall will be in touch soon to discuss your workshop request. In the meantime, feel free
-          to call or text at <a href="tel:3066314331" className="text-sage-600 font-medium">(306) 631-4331</a>.
+          Your email client opened with your details pre-filled. Once sent, Kendall will be in touch
+          to discuss your workshop. You can also call or text at{' '}
+          <a href="tel:3066314331" className="text-sage-600 font-medium">(306) 631-4331</a>.
         </p>
         <button
           onClick={() => setStatus('idle')}
@@ -309,7 +300,6 @@ function WorkshopForm() {
         </div>
       </div>
 
-      {/* Format selection */}
       <div>
         <label className="label">Preferred Format *</label>
         <div className="grid sm:grid-cols-2 gap-3">
@@ -347,23 +337,12 @@ function WorkshopForm() {
         />
       </div>
 
-      {errorMsg && (
-        <p className="text-red-600 text-sm bg-red-50 border border-red-200 rounded-xl p-3">
-          {errorMsg}
-        </p>
-      )}
-
-      <button
-        type="submit"
-        disabled={status === 'loading'}
-        className="btn-primary w-full justify-center py-3.5 disabled:opacity-60 disabled:cursor-not-allowed"
-      >
-        {status === 'loading' ? 'Sending...' : 'Submit Workshop Request'}
+      <button type="submit" className="btn-primary w-full justify-center py-3.5">
+        Submit Workshop Request
       </button>
 
       <p className="text-center text-xs text-warm-400">
-        * Kendall will call you to confirm details and discuss pricing. This is not a confirmed
-        booking.
+        Kendall will call you to confirm details and discuss pricing. This is not a confirmed booking.
       </p>
     </form>
   )
@@ -395,15 +374,50 @@ const outcomes = [
 ]
 
 const audiences = [
-  { emoji: '🏢', label: 'Corporate Teams & Leadership' },
-  { emoji: '🍎', label: 'Educators & School Staff' },
-  { emoji: '🏥', label: 'Healthcare Professionals' },
-  { emoji: '🚒', label: 'First Responders' },
-  { emoji: '🧑‍🎓', label: 'Youth & Young Adults' },
-  { emoji: '🤝', label: 'Community Organizations' },
+  'Corporate Teams & Leadership',
+  'Educators & School Staff',
+  'Healthcare Professionals',
+  'First Responders',
+  'Youth & Young Adults',
+  'Community Organizations',
 ]
 
 // ── Icons ──
+function BookIcon() {
+  return (
+    <svg className="w-5 h-5 text-sage-600" viewBox="0 0 24 24" fill="none">
+      <path d="M4 19.5A2.5 2.5 0 016.5 17H20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
+function StarIcon() {
+  return (
+    <svg className="w-5 h-5 text-gold-600" viewBox="0 0 24 24" fill="none">
+      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
+function ClockIcon() {
+  return (
+    <svg className="w-5 h-5 text-sage-600" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" />
+      <path d="M12 6v6l4 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
+function SunriseIcon() {
+  return (
+    <svg className="w-5 h-5 text-gold-600" viewBox="0 0 24 24" fill="none">
+      <path d="M17 18a5 5 0 00-10 0" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M12 2v7M4.22 10.22l1.42 1.42M1 18h2M21 18h2M18.36 11.64l1.42-1.42" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
 function CheckCircle({ className }: { className?: string }) {
   return (
     <svg className={`w-5 h-5 flex-shrink-0 ${className}`} viewBox="0 0 24 24" fill="none">

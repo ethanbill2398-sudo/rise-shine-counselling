@@ -125,7 +125,7 @@ export default function Services() {
                   Come meet me at my Saskatoon office — a warm, private, and welcoming space
                   designed to help you feel at ease from the moment you arrive.
                 </p>
-                <p className="text-xs text-warm-400">325 Herold Rd #1, Saskatoon, SK S7V 0A9</p>
+                <p className="text-xs text-warm-400">Briarwood, Saskatoon, SK</p>
               </div>
 
               <div className="card border-2 border-gold-200">

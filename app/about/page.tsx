@@ -170,7 +170,7 @@ export default function About() {
                 comfortable.
               </p>
               <p className="text-xs text-warm-500">
-                325 Herold Rd #1, Saskatoon, SK S7V 0A9
+                Briarwood, Saskatoon, SK
               </p>
             </div>
             <div className="card border-2 border-gold-200 hover:border-gold-400 transition-colors">

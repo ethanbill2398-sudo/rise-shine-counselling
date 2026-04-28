@@ -1,10 +1,6 @@
 'use client'
 
-import { useState } from 'react'
-import type { Metadata } from 'next'
-
-// Note: metadata must be in a server component; move to a separate layout if needed.
-// export const metadata: Metadata = { title: 'Book a Call', ... }
+import { useEffect, useRef } from 'react'
 
 export default function Contact() {
   return (
@@ -75,8 +71,7 @@ export default function Contact() {
               <div className="bg-sage-50 border border-sage-200 rounded-2xl p-5">
                 <h3 className="font-semibold text-sage-800 text-sm mb-3">Office Location</h3>
                 <p className="text-sage-700 text-sm leading-relaxed">
-                  325 Herold Rd #1<br />
-                  Saskatoon, SK S7V 0A9
+                  Briarwood, Saskatoon, SK
                 </p>
                 <p className="text-sage-600 text-xs mt-2">Open &middot; Closes 6:00 p.m.</p>
                 <p className="text-sage-600 text-xs mt-1">In-person &amp; online via Zoom</p>
@@ -94,11 +89,7 @@ export default function Contact() {
             {/* Form */}
             <div className="md:col-span-3">
               <div className="bg-white rounded-3xl border border-warm-200 shadow-sm p-8 md:p-10">
-                <h2 className="font-serif text-2xl text-warm-900 mb-2">Send Your Details</h2>
-                <p className="text-warm-500 text-sm mb-7">
-                  Fill this out and Kendall will reach out to you directly.
-                </p>
-                <ContactForm />
+                <JotForm />
               </div>
             </div>
           </div>
@@ -116,9 +107,9 @@ export default function Contact() {
           </p>
           <div className="bg-warm-100 rounded-2xl border border-warm-200 p-8 text-warm-500 text-sm">
             <div className="text-4xl mb-3">📍</div>
-            <p className="font-medium text-warm-800">325 Herold Rd #1, Saskatoon, SK S7V 0A9</p>
+            <p className="font-medium text-warm-800">Briarwood, Saskatoon, SK</p>
             <a
-              href="https://maps.google.com/?q=325+Herold+Rd+%231+Saskatoon+SK"
+              href="https://maps.google.com/?q=Briarwood+Saskatoon+SK"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block mt-4 text-sage-600 hover:text-sage-700 font-medium text-sm underline underline-offset-2"
@@ -132,129 +123,20 @@ export default function Contact() {
   )
 }
 
-// ── Contact Form Component ──
-function ContactForm() {
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success'>('idle')
+// ── JotForm Embed ──
+function JotForm() {
+  const containerRef = useRef<HTMLDivElement>(null)
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-    setStatus('loading')
+  useEffect(() => {
+    const script = document.createElement('script')
+    script.src = 'https://form.jotform.com/jssform/261136609104248'
+    script.type = 'text/javascript'
+    if (containerRef.current) {
+      containerRef.current.appendChild(script)
+    }
+  }, [])
 
-    const form = e.currentTarget
-    const name = (form.elements.namedItem('name') as HTMLInputElement).value
-    const email = (form.elements.namedItem('email') as HTMLInputElement).value
-    const phone = (form.elements.namedItem('phone') as HTMLInputElement).value
-    const contactTime = (form.elements.namedItem('contactTime') as HTMLInputElement).value
-    const sessionType = (form.querySelector('input[name="sessionType"]:checked') as HTMLInputElement)?.value ?? ''
-    const message = (form.elements.namedItem('message') as HTMLTextAreaElement).value
-
-    const subject = encodeURIComponent(`New Booking Request from ${name}`)
-    const body = encodeURIComponent(
-      `Name: ${name}\nPhone: ${phone}\nEmail: ${email}\nBest time to call: ${contactTime || 'Not specified'}\nLooking for: ${sessionType || 'Not specified'}\n\nMessage:\n${message || 'None provided'}`
-    )
-
-    window.open(`mailto:support@riseandshinecounselling.net?subject=${subject}&body=${body}`)
-    setStatus('success')
-  }
-
-  if (status === 'success') {
-    return (
-      <div className="text-center py-8">
-        <div className="w-16 h-16 rounded-full bg-sage-100 flex items-center justify-center mx-auto mb-5">
-          <span className="text-3xl">&#x2728;</span>
-        </div>
-        <h3 className="font-serif text-2xl text-warm-900 mb-3">Message received!</h3>
-        <p className="text-warm-600 leading-relaxed mb-6">
-          Kendall will reach out to you personally within 1–2 business days. You&apos;ve taken a
-          brave first step.
-        </p>
-        <p className="text-warm-500 text-sm">
-          Need to reach her sooner?{' '}
-          <a href="tel:3066314331" className="text-sage-600 font-medium hover:underline">
-            Call (306) 631-4331
-          </a>
-        </p>
-        <button
-          onClick={() => setStatus('idle')}
-          className="mt-6 text-xs text-warm-400 hover:text-warm-600 transition-colors underline"
-        >
-          Submit another message
-        </button>
-      </div>
-    )
-  }
-
-  return (
-    <form onSubmit={handleSubmit} className="space-y-5">
-      <div className="grid sm:grid-cols-2 gap-5">
-        <div>
-          <label className="label" htmlFor="c-name">Full Name *</label>
-          <input id="c-name" name="name" type="text" required className="input-field" placeholder="Your name" />
-        </div>
-        <div>
-          <label className="label" htmlFor="c-phone">Phone Number *</label>
-          <input id="c-phone" name="phone" type="tel" required className="input-field" placeholder="(306) 000-0000" />
-        </div>
-      </div>
-
-      <div>
-        <label className="label" htmlFor="c-email">Email Address *</label>
-        <input id="c-email" name="email" type="email" required className="input-field" placeholder="you@example.com" />
-      </div>
-
-      <div>
-        <label className="label" htmlFor="c-time">Best Time to Call</label>
-        <input
-          id="c-time"
-          name="contactTime"
-          type="text"
-          className="input-field"
-          placeholder="e.g. Weekday mornings, after 3 p.m."
-        />
-      </div>
-
-      {/* Session type */}
-      <div>
-        <label className="label">I&apos;m Looking For</label>
-        <div className="grid sm:grid-cols-3 gap-2">
-          {sessionTypes.map((t) => (
-            <label
-              key={t.value}
-              className="flex items-center gap-2 cursor-pointer p-3 rounded-xl border border-warm-200 hover:border-sage-400 transition-colors has-[:checked]:border-sage-500 has-[:checked]:bg-sage-50 text-sm"
-            >
-              <input type="radio" name="sessionType" value={t.value} className="accent-sage-600" />
-              <span className="text-warm-800">{t.label}</span>
-            </label>
-          ))}
-        </div>
-      </div>
-
-      <div>
-        <label className="label" htmlFor="c-message">
-          What brings you here? <span className="text-warm-400 font-normal">(optional)</span>
-        </label>
-        <textarea
-          id="c-message"
-          name="message"
-          rows={4}
-          className="input-field resize-none"
-          placeholder="Share as much or as little as you'd like..."
-        />
-      </div>
-
-      <button
-        type="submit"
-        disabled={status === 'loading'}
-        className="btn-primary w-full justify-center py-3.5 disabled:opacity-60 disabled:cursor-not-allowed"
-      >
-        {status === 'loading' ? 'Sending...' : 'Send My Details'}
-      </button>
-
-      <p className="text-center text-xs text-warm-400">
-        Kendall will call you to follow up — this is not a confirmed appointment.
-      </p>
-    </form>
-  )
+  return <div ref={containerRef} />
 }
 
 // ── Data ──
@@ -274,8 +156,8 @@ const contactMethods = [
   {
     emoji: '📍',
     label: 'Office',
-    value: '325 Herold Rd #1, Saskatoon',
-    href: 'https://maps.google.com/?q=325+Herold+Rd+%231+Saskatoon+SK',
+    value: 'Briarwood, Saskatoon, SK',
+    href: 'https://maps.google.com/?q=Briarwood+Saskatoon+SK',
   },
 ]
 
@@ -286,8 +168,3 @@ const steps = [
   'Schedule your first session — in person or online.',
 ]
 
-const sessionTypes = [
-  { value: 'individual', label: 'Individual' },
-  { value: 'couples', label: 'Couples' },
-  { value: 'youth', label: 'Youth' },
-]
