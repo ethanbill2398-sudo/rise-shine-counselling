@@ -100,7 +100,7 @@ export default function About() {
           <div className="grid md:grid-cols-2 gap-6">
             <div className="card hover:shadow-md transition-shadow">
               <div className="w-12 h-12 rounded-xl bg-sage-100 flex items-center justify-center mb-5">
-                <span className="text-2xl">🧠</span>
+                <AboutBrainIcon />
               </div>
               <h3 className="font-serif text-xl text-warm-900 mb-4">
                 Cognitive Behavioral Therapy
@@ -125,7 +125,7 @@ export default function About() {
 
             <div className="card hover:shadow-md transition-shadow">
               <div className="w-12 h-12 rounded-xl bg-gold-100 flex items-center justify-center mb-5">
-                <span className="text-2xl">💛</span>
+                <AboutHeartIcon />
               </div>
               <h3 className="font-serif text-xl text-warm-900 mb-4">
                 Emotionally Focused Therapy
@@ -258,6 +258,22 @@ function CheckCircle() {
     <svg className="w-4 h-4 text-sage-500 flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none">
       <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2" />
       <path d="M9 12L11 14L15 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
+function AboutBrainIcon() {
+  return (
+    <svg className="w-6 h-6 text-sage-600" viewBox="0 0 24 24" fill="none">
+      <path d="M9 3C6.239 3 4 5.239 4 8c0 1.013.3 1.956.815 2.744C3.722 11.389 3 12.614 3 14c0 2.209 1.567 4.053 3.645 4.497C7.198 19.907 8.514 21 10 21c.34 0 .669-.046.984-.13A3.994 3.994 0 0012 21c.353 0 .695-.047 1.016-.13.315.084.644.13.984.13 1.486 0 2.802-1.093 3.355-2.503C19.433 18.053 21 16.209 21 14c0-1.386-.722-2.611-1.815-3.256C19.7 9.956 20 9.013 20 8c0-2.761-2.239-5-5-5-1.022 0-1.97.307-2.756.832A4.987 4.987 0 0010 3c-.428 0-.843.056-1.244.16" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
+function AboutHeartIcon() {
+  return (
+    <svg className="w-6 h-6 text-gold-500" viewBox="0 0 24 24" fill="none">
+      <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   )
 }

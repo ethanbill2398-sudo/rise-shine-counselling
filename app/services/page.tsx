@@ -71,17 +71,14 @@ export default function Services() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+          <div className="flex flex-wrap justify-center gap-3">
             {concerns.map((c) => (
-              <div
+              <span
                 key={c.label}
-                className="bg-white rounded-2xl p-5 border border-warm-200 hover:border-sage-300 hover:shadow-sm transition-all text-center group"
+                className="px-4 py-2 bg-white border border-warm-200 rounded-full text-sm text-warm-700 font-medium hover:bg-sage-50 hover:border-sage-300 transition-colors cursor-default"
               >
-                <div className="w-10 h-10 rounded-xl bg-sage-100 flex items-center justify-center mx-auto mb-3 group-hover:bg-sage-200 transition-colors">
-                  <span className="text-xl">{c.emoji}</span>
-                </div>
-                <div className="text-sm font-medium text-warm-800">{c.label}</div>
-              </div>
+                {c.label}
+              </span>
             ))}
           </div>
         </div>

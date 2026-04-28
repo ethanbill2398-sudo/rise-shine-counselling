@@ -105,17 +105,14 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+          <div className="flex flex-wrap justify-center gap-3">
             {concerns.map((c) => (
-              <div
-                key={c.label}
-                className="flex flex-col items-center text-center p-4 rounded-2xl hover:bg-sage-50 transition-colors group cursor-default"
+              <span
+                key={c}
+                className="px-4 py-2 bg-sage-50 border border-sage-200 rounded-full text-sm text-warm-700 font-medium hover:bg-sage-100 hover:border-sage-300 transition-colors cursor-default"
               >
-                <div className="w-12 h-12 rounded-full bg-sage-100 flex items-center justify-center mb-3 group-hover:bg-sage-200 transition-colors">
-                  <span className="text-2xl">{c.emoji}</span>
-                </div>
-                <span className="text-xs font-medium text-warm-700">{c.label}</span>
-              </div>
+                {c}
+              </span>
             ))}
           </div>
 
@@ -187,7 +184,7 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-5 max-w-3xl mx-auto text-left">
             <div className="bg-white/10 hover:bg-white/15 rounded-2xl p-8 transition-colors backdrop-blur-sm border border-white/10">
               <div className="w-11 h-11 rounded-xl bg-gold-500/30 flex items-center justify-center mb-5">
-                <span className="text-2xl">🧠</span>
+                <BrainIcon />
               </div>
               <h3 className="font-serif text-xl font-semibold text-white mb-3">
                 Cognitive Behavioral Therapy (CBT)
@@ -199,7 +196,7 @@ export default function Home() {
             </div>
             <div className="bg-white/10 hover:bg-white/15 rounded-2xl p-8 transition-colors backdrop-blur-sm border border-white/10">
               <div className="w-11 h-11 rounded-xl bg-gold-500/30 flex items-center justify-center mb-5">
-                <span className="text-2xl">💛</span>
+                <HeartIcon />
               </div>
               <h3 className="font-serif text-xl font-semibold text-white mb-3">
                 Emotionally Focused Therapy (EFT)
@@ -281,7 +278,7 @@ export default function Home() {
         </div>
         <div className="relative max-w-2xl mx-auto px-4 sm:px-6">
           <div className="w-14 h-14 rounded-full bg-gold-500/20 border border-gold-400/30 flex items-center justify-center mx-auto mb-6">
-            <span className="text-2xl">&#x2728;</span>
+            <SparkleIcon />
           </div>
           <h2 className="font-serif text-4xl md:text-5xl text-white mb-5 leading-tight">
             Ready to take the first step?
@@ -315,18 +312,18 @@ export default function Home() {
 
 // ── Data ──
 const concerns = [
-  { emoji: '😰', label: 'Anxiety' },
-  { emoji: '💙', label: 'Depression' },
-  { emoji: '🔄', label: 'Addiction' },
-  { emoji: '🌿', label: 'Eating Disorders' },
-  { emoji: '🕊️', label: 'Grief & Loss' },
-  { emoji: '🔀', label: 'Life Transitions' },
-  { emoji: '❤️', label: 'Relationships' },
-  { emoji: '💑', label: 'Couples' },
-  { emoji: '🌱', label: 'Youth' },
-  { emoji: '✨', label: 'Self-Growth' },
-  { emoji: '🔥', label: 'Burnout' },
-  { emoji: '🧘', label: 'Wellbeing' },
+  'Anxiety',
+  'Depression',
+  'Addiction',
+  'Eating Disorders',
+  'Grief & Loss',
+  'Life Transitions',
+  'Relationships',
+  'Couples',
+  'Youth',
+  'Self-Growth',
+  'Burnout',
+  'Wellbeing',
 ]
 
 const workshopPoints = [
@@ -381,6 +378,31 @@ function PhoneIcon() {
         strokeLinecap="round"
         strokeLinejoin="round"
       />
+    </svg>
+  )
+}
+
+function BrainIcon() {
+  return (
+    <svg className="w-5 h-5 text-gold-300" viewBox="0 0 24 24" fill="none">
+      <path d="M9 3C6.239 3 4 5.239 4 8c0 1.013.3 1.956.815 2.744C3.722 11.389 3 12.614 3 14c0 2.209 1.567 4.053 3.645 4.497C7.198 19.907 8.514 21 10 21c.34 0 .669-.046.984-.13A3.994 3.994 0 0012 21c.353 0 .695-.047 1.016-.13.315.084.644.13.984.13 1.486 0 2.802-1.093 3.355-2.503C19.433 18.053 21 16.209 21 14c0-1.386-.722-2.611-1.815-3.256C19.7 9.956 20 9.013 20 8c0-2.761-2.239-5-5-5-1.022 0-1.97.307-2.756.832A4.987 4.987 0 0010 3c-.428 0-.843.056-1.244.16" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
+function HeartIcon() {
+  return (
+    <svg className="w-5 h-5 text-gold-300" viewBox="0 0 24 24" fill="none">
+      <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
+function SparkleIcon() {
+  return (
+    <svg className="w-6 h-6 text-gold-300" viewBox="0 0 24 24" fill="none">
+      <path d="M12 3v1M12 20v1M4.22 4.22l.71.71M18.36 18.36l.71.71M3 12H4M20 12h1M4.22 19.78l.71-.71M18.36 5.64l.71-.71" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="2" />
     </svg>
   )
 }
