@@ -79,34 +79,66 @@ export default function WorkshopRegister() {
       </section>
 
       {/* ── Payment Instructions ── */}
-      <section className="py-14 bg-warm-50">
+      <section className="py-16 bg-warm-50">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
-          <div className="bg-gold-50 border border-gold-200 rounded-2xl p-8">
-            <h2 className="font-serif text-2xl text-warm-900 mb-4 flex items-center gap-2">
-              <MoneyIcon />
-              How to Pay
-            </h2>
-            <p className="text-warm-700 leading-relaxed mb-5">
-              Payment is collected via <strong>Interac E-Transfer</strong>. Once you complete the
-              registration form below, send your e-transfer to:
-            </p>
-            <div className="bg-white border border-gold-300 rounded-xl p-5 font-mono text-sm text-warm-800 mb-5 select-all">
-              support@riseandshinecounselling.net
+          <div className="text-center mb-8">
+            <p className="section-label mb-3">Payment</p>
+            <h2 className="font-serif text-3xl text-warm-900">How to Pay</h2>
+          </div>
+
+          <div className="bg-white rounded-3xl border border-warm-200 shadow-sm overflow-hidden">
+            {/* Top banner */}
+            <div className="bg-sage-700 px-8 py-5 flex items-center gap-4">
+              <div className="w-10 h-10 rounded-full bg-white/15 flex items-center justify-center flex-shrink-0">
+                <MoneyIcon />
+              </div>
+              <div>
+                <p className="text-white font-semibold">Interac E-Transfer</p>
+                <p className="text-sage-200 text-sm">Secure, fast, and easy</p>
+              </div>
             </div>
-            <ol className="space-y-3 text-warm-700 text-sm list-none">
-              <li className="flex gap-3">
-                <span className="font-bold text-gold-700 flex-shrink-0 w-4">1.</span>
-                <p>In the <strong>message/notes field</strong> of your e-transfer, include your <strong>full name</strong> and <strong>number of tickets</strong> (e.g. &ldquo;Jane Smith — 2 tickets&rdquo;).</p>
-              </li>
-              <li className="flex gap-3">
-                <span className="font-bold text-gold-700 flex-shrink-0 w-4">2.</span>
-                <p>Your spot will be confirmed once Kendall receives your payment.</p>
-              </li>
-              <li className="flex gap-3">
-                <span className="font-bold text-gold-700 flex-shrink-0 w-4">3.</span>
-                <p>At the venue, simply give your name at the door — you&apos;ll be checked off the list.</p>
-              </li>
-            </ol>
+
+            <div className="px-8 py-8">
+              {/* Email address highlight */}
+              <p className="text-warm-600 text-sm mb-3">Send your payment to:</p>
+              <div className="flex items-center gap-3 bg-sage-50 border border-sage-200 rounded-2xl px-6 py-4 mb-8">
+                <svg className="w-5 h-5 text-sage-600 flex-shrink-0" viewBox="0 0 24 24" fill="none">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <polyline points="22,6 12,13 2,6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                <span className="text-sage-800 font-medium text-sm sm:text-base select-all">
+                  support@riseandshinecounselling.net
+                </span>
+              </div>
+
+              {/* Steps */}
+              <div className="space-y-5">
+                {[
+                  {
+                    title: 'Register below',
+                    body: 'Complete the registration form on this page to let Kendall know you\'re coming.',
+                  },
+                  {
+                    title: 'Send your e-transfer',
+                    body: <>In the <strong className="text-warm-900">message/notes field</strong>, include your <strong className="text-warm-900">full name</strong> and <strong className="text-warm-900">number of tickets</strong> — for example: &ldquo;Jane Smith — 2 tickets&rdquo;.</>,
+                  },
+                  {
+                    title: 'Spot confirmed',
+                    body: 'Kendall will confirm your registration once payment is received. At the venue, just give your name at the door.',
+                  },
+                ].map((step, i) => (
+                  <div key={i} className="flex gap-4 items-start">
+                    <div className="w-8 h-8 rounded-full bg-sage-600 text-white flex items-center justify-center text-sm font-semibold flex-shrink-0 mt-0.5">
+                      {i + 1}
+                    </div>
+                    <div>
+                      <p className="font-semibold text-warm-900 text-sm mb-0.5">{step.title}</p>
+                      <p className="text-warm-600 text-sm leading-relaxed">{step.body}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>

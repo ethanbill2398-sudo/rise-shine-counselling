@@ -9,20 +9,20 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Slate-charcoal accent (replaces sage green)
+        // True sage green — earthy, organic, healing
         sage: {
-          50:  '#f8fafc',
-          100: '#f1f5f9',
-          200: '#e2e8f0',
-          300: '#cbd5e1',
-          400: '#94a3b8',
-          500: '#64748b',
-          600: '#475569',
-          700: '#334155',
-          800: '#1e293b',
-          900: '#0f172a',
+          50:  '#f3f7f1',
+          100: '#e4eddf',
+          200: '#c6d9be',
+          300: '#9cbd91',
+          400: '#6f9e63',
+          500: '#527f46',
+          600: '#3f6636',
+          700: '#314f29',
+          800: '#233a1d',
+          900: '#162412',
         },
-        // Gold stays as the warm accent pop
+        // Gold — warm amber accent
         gold: {
           50:  '#fdf8ec',
           100: '#faf0d0',
@@ -35,18 +35,18 @@ const config: Config = {
           800: '#583f0a',
           900: '#342103',
         },
-        // Clean zinc/grey (replaces warm beige)
+        // Warm stone/cream — soft, human, inviting
         warm: {
-          50:  '#fafafa',
-          100: '#f4f4f5',
-          200: '#e4e4e7',
-          300: '#d1d1d6',
-          400: '#a1a1aa',
-          500: '#71717a',
-          600: '#52525b',
-          700: '#3f3f46',
-          800: '#27272a',
-          900: '#18181b',
+          50:  '#faf8f4',
+          100: '#f2ece3',
+          200: '#e4d6c8',
+          300: '#cdbba6',
+          400: '#b09783',
+          500: '#8e7565',
+          600: '#6e5a4e',
+          700: '#51433a',
+          800: '#352c26',
+          900: '#1d1713',
         },
       },
       fontFamily: {
