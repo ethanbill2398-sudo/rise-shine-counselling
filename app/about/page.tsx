@@ -162,7 +162,7 @@ export default function About() {
           <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
             <div className="card border-2 border-sage-200 hover:border-sage-400 transition-colors">
               <div className="w-12 h-12 rounded-xl bg-sage-100 flex items-center justify-center mb-4">
-                <span className="text-2xl">🏡</span>
+                <AboutHomeIcon />
               </div>
               <h3 className="font-serif text-lg text-warm-900 mb-2">In-Person Sessions</h3>
               <p className="text-warm-600 text-sm leading-relaxed mb-3">
@@ -175,7 +175,7 @@ export default function About() {
             </div>
             <div className="card border-2 border-gold-200 hover:border-gold-400 transition-colors">
               <div className="w-12 h-12 rounded-xl bg-gold-100 flex items-center justify-center mb-4">
-                <span className="text-2xl">💻</span>
+                <AboutMonitorIcon />
               </div>
               <h3 className="font-serif text-lg text-warm-900 mb-2">Online via Zoom</h3>
               <p className="text-warm-600 text-sm leading-relaxed mb-3">
@@ -274,6 +274,24 @@ function AboutHeartIcon() {
   return (
     <svg className="w-6 h-6 text-gold-500" viewBox="0 0 24 24" fill="none">
       <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
+function AboutHomeIcon() {
+  return (
+    <svg className="w-6 h-6 text-sage-600" viewBox="0 0 24 24" fill="none">
+      <path d="M3 9.5L12 3L21 9.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M9 21V12h6v9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
+function AboutMonitorIcon() {
+  return (
+    <svg className="w-6 h-6 text-gold-600" viewBox="0 0 24 24" fill="none">
+      <rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" strokeWidth="2" />
+      <path d="M8 21h8M12 17v4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
     </svg>
   )
 }
