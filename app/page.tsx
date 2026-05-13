@@ -21,12 +21,12 @@ export default function Home() {
             </div>
             <h1 className="font-serif text-5xl md:text-[3.5rem] lg:text-[4rem] text-warm-900 leading-[1.1] mb-6">
               Helping You{' '}
-              <span className="text-sage-600">Rise.</span>
+              <span style={{ color: '#6c3f14' }}>Rise.</span>
               <br />
               Supporting You
               <br />
               to{' '}
-              <span className="text-gold-500">Shine.</span>
+              <span style={{ color: '#cbbabe' }}>Shine.</span>
             </h1>
             <p className="text-warm-600 text-lg leading-relaxed mb-8 max-w-md">
               A safe, compassionate space for individuals, couples, and youth navigating life&apos;s

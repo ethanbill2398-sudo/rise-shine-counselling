@@ -42,7 +42,7 @@ export default function About() {
               <h1 className="font-serif text-4xl md:text-5xl text-warm-900 leading-tight mb-6">
                 Meet the heart behind
                 <br />
-                <span className="text-sage-600">Rise &amp; Shine</span>
+                <span style={{ color: '#6c3f14' }}>Rise</span> &amp; <span style={{ color: '#cbbabe' }}>Shine</span>
               </h1>
               <p className="text-warm-600 leading-relaxed mb-5">
                 Hi, I&apos;m Kendall Pruden. I grew up in Moose Jaw, Saskatchewan, and now call

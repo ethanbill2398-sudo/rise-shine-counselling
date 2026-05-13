@@ -18,7 +18,7 @@ export default function Footer() {
               />
             </div>
             <p className="text-sm text-warm-400 leading-relaxed italic mb-3">
-              "Helping You Rise, Supporting You to Shine."
+              <>&#8220;Helping You <span style={{ color: '#6c3f14' }}>Rise</span>, Supporting You to <span style={{ color: '#cbbabe' }}>Shine</span>.&#8221;</>
             </p>
             <p className="text-sm text-warm-500">Kendall Pruden, M.A., MCPC</p>
             <p className="text-sm text-warm-500">Founder &amp; Clinical Counsellor</p>
