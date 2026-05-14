@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import JotFormEmbed from '@/components/JotFormEmbed'
+import WorkshopFormEmbed from '@/components/WorkshopFormEmbed'
 
 export const metadata: Metadata = {
   title: 'Book a Counselling Session in Saskatoon | Contact Kendall Pruden',
@@ -95,7 +95,7 @@ export default function Contact() {
             {/* Form */}
             <div className="md:col-span-3">
               <div className="bg-white rounded-3xl border border-warm-200 shadow-sm p-8 md:p-10">
-                <JotFormEmbed src="https://form.jotform.com/jssform/261136609104248" />
+                <WorkshopFormEmbed />
               </div>
             </div>
           </div>
@@ -129,43 +129,7 @@ export default function Contact() {
   )
 }
 
-<<<<<<< HEAD
-// ── JotForm Embed ──
-function JotForm() {
-  useEffect(() => {
-    const existing = document.querySelector(
-      'script[src="https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js"]'
-    )
-    const callHandler = () => {
-      ;(window as any).jotformEmbedHandler(
-        "iframe[id='JotFormIFrame-261136609104248']",
-        'https://form.jotform.com/'
-      )
-    }
-    if (existing) {
-      callHandler()
-    } else {
-      const script = document.createElement('script')
-      script.src = 'https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js'
-      script.onload = callHandler
-      document.body.appendChild(script)
-    }
-  }, [])
 
-  return (
-    <iframe
-      id="JotFormIFrame-261136609104248"
-      title="Send Your Details"
-      onLoad={() => window.parent.scrollTo(0, 0)}
-      allow="geolocation; microphone; camera; fullscreen; payment"
-      src="https://form.jotform.com/261136609104248"
-      style={{ minWidth: '100%', maxWidth: '100%', height: '539px', border: 'none' }}
-    />
-  )
-}
-
-=======
->>>>>>> 873f789 (Add SEO foundations: sitemap, robots, structured data, and per-page metadata)
 // ── Data ──
 const contactMethods = [
   {
