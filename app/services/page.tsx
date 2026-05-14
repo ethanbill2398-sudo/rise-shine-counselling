@@ -2,9 +2,10 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Services',
+  title: 'Counselling Services in Saskatoon | Anxiety, Depression, Couples & Youth',
   description:
-    'Counselling services for individuals, couples, and youth in Saskatoon and online. Specializing in anxiety, depression, addiction, grief, eating disorders, relationships, and life transitions.',
+    'Individual, couples, and youth counselling in Saskatoon and online across Saskatchewan. Specializing in anxiety, depression, addiction, grief, eating disorders, and life transitions.',
+  alternates: { canonical: '/services' },
 }
 
 export default function Services() {

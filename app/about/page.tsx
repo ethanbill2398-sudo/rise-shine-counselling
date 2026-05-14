@@ -3,9 +3,10 @@ import Link from 'next/link'
 import ClientImage from '@/components/ClientImage'
 
 export const metadata: Metadata = {
-  title: 'About Kendall',
+  title: 'About Kendall Pruden | Counsellor in Saskatoon, SK',
   description:
-    'Meet Kendall Pruden, M.A., MCPC — founder of Rise & Shine Counselling in Saskatoon. Learn about her approach, values, and how she helps individuals, couples, and youth.',
+    'Meet Kendall Pruden, M.A., MCPC — founder of Rise & Shine Counselling in Saskatoon, SK. Learn about her background, therapeutic approach (CBT & EFT), and how she helps individuals, couples, and youth.',
+  alternates: { canonical: '/about' },
 }
 
 export default function About() {

@@ -1,6 +1,12 @@
-'use client'
+import type { Metadata } from 'next'
+import JotFormEmbed from '@/components/JotFormEmbed'
 
-import { useEffect } from 'react'
+export const metadata: Metadata = {
+  title: 'Book a Counselling Session in Saskatoon | Contact Kendall Pruden',
+  description:
+    'Get in touch with Kendall Pruden, M.A., MCPC, to book a counselling session in Saskatoon or online across Saskatchewan. Call, text, or email — no automated portals.',
+  alternates: { canonical: '/contact' },
+}
 
 export default function Contact() {
   return (
@@ -89,7 +95,7 @@ export default function Contact() {
             {/* Form */}
             <div className="md:col-span-3">
               <div className="bg-white rounded-3xl border border-warm-200 shadow-sm p-8 md:p-10">
-                <JotForm />
+                <JotFormEmbed src="https://form.jotform.com/jssform/261136609104248" />
               </div>
             </div>
           </div>
@@ -123,6 +129,7 @@ export default function Contact() {
   )
 }
 
+<<<<<<< HEAD
 // ── JotForm Embed ──
 function JotForm() {
   useEffect(() => {
@@ -157,6 +164,8 @@ function JotForm() {
   )
 }
 
+=======
+>>>>>>> 873f789 (Add SEO foundations: sitemap, robots, structured data, and per-page metadata)
 // ── Data ──
 const contactMethods = [
   {

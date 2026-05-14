@@ -1,9 +1,77 @@
 import Link from 'next/link'
 import ClientImage from '@/components/ClientImage'
 
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'LocalBusiness',
+      '@id': 'https://www.riseandshinecounselling.net/#business',
+      name: 'Rise & Shine Counselling',
+      description:
+        'Professional counselling for individuals, couples, and youth in Saskatoon, SK. Specializing in anxiety, depression, grief, and life transitions.',
+      url: 'https://www.riseandshinecounselling.net',
+      telephone: '+13066314331',
+      email: 'support@riseandshinecounselling.net',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Saskatoon',
+        addressRegion: 'SK',
+        addressCountry: 'CA',
+        streetAddress: 'Briarwood',
+      },
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: 52.0826,
+        longitude: -106.6694,
+      },
+      openingHoursSpecification: {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+        closes: '18:00',
+      },
+      sameAs: ['https://www.riseandshinecounselling.net'],
+      priceRange: '$$',
+      serviceArea: {
+        '@type': 'State',
+        name: 'Saskatchewan',
+      },
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'Counselling Services',
+        itemListElement: [
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Individual Counselling' } },
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Couples Counselling' } },
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Youth Counselling' } },
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Online Counselling via Zoom' } },
+        ],
+      },
+    },
+    {
+      '@type': 'Person',
+      '@id': 'https://www.riseandshinecounselling.net/#kendall',
+      name: 'Kendall Pruden',
+      jobTitle: 'Master\'s-level Clinical Professional Counsellor',
+      honorificSuffix: 'M.A., MCPC',
+      worksFor: { '@id': 'https://www.riseandshinecounselling.net/#business' },
+      url: 'https://www.riseandshinecounselling.net/about',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Saskatoon',
+        addressRegion: 'SK',
+        addressCountry: 'CA',
+      },
+    },
+  ],
+}
+
 export default function Home() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* ── Hero ── */}
       <section className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-warm-50">
         {/* Soft background blobs */}
