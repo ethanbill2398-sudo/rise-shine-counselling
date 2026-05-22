@@ -149,16 +149,16 @@ export default function Services() {
                   </div>
                 ))}
               </div>
+              <div className="relative rounded-2xl overflow-hidden aspect-[4/3] shadow-md mt-8">
+                <ClientImage
+                  src="/images/kendall-office.jpg"
+                  alt="Kendall Pruden in her counselling office in Saskatoon"
+                  className="object-cover"
+                />
+              </div>
             </div>
 
             <div className="space-y-5">
-              <div className="relative rounded-2xl overflow-hidden aspect-[4/3] shadow-md">
-                <ClientImage
-                  src="/images/kendall-hero.jpg"
-                  alt="Kendall Pruden, Rise & Shine Counselling"
-                  className="object-cover object-top"
-                />
-              </div>
               <div className="card border-2 border-sage-200">
                 <div className="flex items-center gap-3 mb-3">
                   <HomeIcon />
