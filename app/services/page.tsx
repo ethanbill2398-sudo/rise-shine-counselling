@@ -100,6 +100,29 @@ export default function Services() {
         </div>
       </section>
 
+      {/* ── Photo break ── */}
+      <section className="py-20 bg-sage-700">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="relative rounded-2xl overflow-hidden aspect-[4/3] shadow-xl">
+              <ClientImage
+                src="/images/kendall-about.jpg"
+                alt="Kendall Pruden, counsellor at Rise & Shine Counselling in Saskatoon"
+                className="object-cover object-top"
+              />
+            </div>
+            <div>
+              <blockquote className="font-serif text-2xl md:text-3xl text-white leading-relaxed mb-6">
+                &ldquo;You don&apos;t have to have it all figured out to begin. You just have to take
+                one step.&rdquo;
+              </blockquote>
+              <p className="text-sage-300 font-medium">— Kendall Pruden, M.A., MCPC</p>
+              <p className="text-sage-400 text-sm mt-1">Founder, Rise &amp; Shine Counselling</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── Approach ── */}
       <section className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -129,6 +152,13 @@ export default function Services() {
             </div>
 
             <div className="space-y-5">
+              <div className="relative rounded-2xl overflow-hidden aspect-[4/3] shadow-md">
+                <ClientImage
+                  src="/images/kendall-hero.jpg"
+                  alt="Kendall Pruden, Rise & Shine Counselling"
+                  className="object-cover object-top"
+                />
+              </div>
               <div className="card border-2 border-sage-200">
                 <div className="flex items-center gap-3 mb-3">
                   <HomeIcon />
