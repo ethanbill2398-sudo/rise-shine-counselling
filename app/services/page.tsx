@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import ClientImage from '@/components/ClientImage'
 
 export const metadata: Metadata = {
   title: 'Counselling Services in Saskatoon | Anxiety, Depression, Couples & Youth',
@@ -13,15 +14,29 @@ export default function Services() {
     <>
       {/* ── Hero ── */}
       <section className="pt-28 pb-16 bg-gradient-to-b from-warm-100 to-warm-50">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-          <p className="section-label mb-3">What I Offer</p>
-          <h1 className="font-serif text-4xl md:text-5xl text-warm-900 leading-tight mb-5">
-            Counselling that meets you where you are
-          </h1>
-          <p className="text-warm-500 text-lg leading-relaxed">
-            Whether you&apos;re navigating a difficult season, rebuilding a relationship, or simply
-            ready to grow — there&apos;s a place for you here.
-          </p>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <p className="section-label mb-3">What I Offer</p>
+              <h1 className="font-serif text-4xl md:text-5xl text-warm-900 leading-tight mb-5">
+                Counselling that meets you where you are
+              </h1>
+              <p className="text-warm-500 text-lg leading-relaxed">
+                Whether you&apos;re navigating a difficult season, rebuilding a relationship, or simply
+                ready to grow — there&apos;s a place for you here.
+              </p>
+            </div>
+            <div className="relative flex justify-center">
+              <div className="relative w-full max-w-md rounded-2xl overflow-hidden aspect-[4/3] shadow-xl">
+                <ClientImage
+                  src="/images/kendall-office.jpg"
+                  alt="Kendall Pruden in her counselling office in Saskatoon"
+                  className="object-cover"
+                  priority
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

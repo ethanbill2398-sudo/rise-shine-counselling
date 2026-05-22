@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import WorkshopFormEmbed from '@/components/WorkshopFormEmbed'
+import ClientImage from '@/components/ClientImage'
 
 export const metadata: Metadata = {
   title: 'The Blossoming Workshop | Stress & Wellbeing Training for Teams',
@@ -14,18 +15,32 @@ export default function Workshops() {
     <>
       {/* ── Hero ── */}
       <section className="pt-28 pb-16 bg-gradient-to-b from-sage-100 to-warm-50">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-          <p className="section-label mb-3">Workshop</p>
-          <h1 className="font-serif text-4xl md:text-5xl text-warm-900 leading-tight mb-5">
-            The Blossoming Workshop
-          </h1>
-          <p className="text-sage-700 text-lg font-medium italic mb-4">
-            From Reaction &rarr; Awareness &rarr; Lasting Change
-          </p>
-          <p className="text-warm-600 leading-relaxed max-w-xl mx-auto">
-            Based on a four-part framework for behavior, wellbeing, and resilience — blending brain
-            science, storytelling, and practical tools.
-          </p>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <p className="section-label mb-3">Workshop</p>
+              <h1 className="font-serif text-4xl md:text-5xl text-warm-900 leading-tight mb-5">
+                The Blossoming Workshop
+              </h1>
+              <p className="text-sage-700 text-lg font-medium italic mb-4">
+                From Reaction &rarr; Awareness &rarr; Lasting Change
+              </p>
+              <p className="text-warm-600 leading-relaxed">
+                Based on a four-part framework for behavior, wellbeing, and resilience — blending brain
+                science, storytelling, and practical tools.
+              </p>
+            </div>
+            <div className="relative flex justify-center">
+              <div className="relative w-full max-w-md rounded-2xl overflow-hidden aspect-[4/3] shadow-xl">
+                <ClientImage
+                  src="/images/workshop-presenter.jpg"
+                  alt="Kendall Pruden presenting The Blossoming Workshop"
+                  className="object-cover object-top"
+                  priority
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -86,6 +101,39 @@ export default function Workshops() {
                   &ldquo;Participants leave with real-life strategies — not just inspiration.&rdquo;
                 </p>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Workshop in Action ── */}
+      <section className="py-16 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-10">
+            <p className="section-label mb-3">Real Sessions</p>
+            <h2 className="section-heading">Workshop in Action</h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-4">
+            <div className="rounded-2xl overflow-hidden aspect-[4/3] shadow-md">
+              <ClientImage
+                src="/images/workshop-group.jpg"
+                alt="Workshop group activity at The Blossoming Workshop"
+                className="object-cover w-full h-full"
+              />
+            </div>
+            <div className="rounded-2xl overflow-hidden aspect-[4/3] shadow-md">
+              <ClientImage
+                src="/images/workshop-participant-1.jpg"
+                alt="Workshop participant engaged in learning"
+                className="object-cover w-full h-full"
+              />
+            </div>
+            <div className="rounded-2xl overflow-hidden aspect-[4/3] shadow-md">
+              <ClientImage
+                src="/images/workshop-participant-2.jpg"
+                alt="Workshop participant working through exercises"
+                className="object-cover w-full h-full"
+              />
             </div>
           </div>
         </div>
