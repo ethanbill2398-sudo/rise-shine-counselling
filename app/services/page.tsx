@@ -106,8 +106,8 @@ export default function Services() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="relative rounded-2xl overflow-hidden aspect-[4/3] shadow-xl">
               <ClientImage
-                src="/images/kendall-about.jpg"
-                alt="Kendall Pruden, counsellor at Rise & Shine Counselling in Saskatoon"
+                src="/images/workshop-participant-1.jpg"
+                alt="Workshop participant at Rise & Shine Counselling"
                 className="object-cover object-top"
               />
             </div>
