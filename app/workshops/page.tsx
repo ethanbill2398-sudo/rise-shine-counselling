@@ -31,11 +31,11 @@ export default function Workshops() {
               </p>
             </div>
             <div className="relative flex justify-center">
-              <div className="relative w-full max-w-md rounded-2xl overflow-hidden aspect-[4/3] shadow-xl">
+              <div className="relative w-full max-w-sm rounded-2xl overflow-hidden aspect-[4/3] shadow-xl">
                 <ClientImage
                   src="/images/workshop-presenter.jpg"
                   alt="Kendall Pruden presenting The Blossoming Workshop"
-                  className="object-cover object-top"
+                  className="object-cover object-center"
                   priority
                 />
               </div>
@@ -114,25 +114,22 @@ export default function Workshops() {
             <h2 className="section-heading">Workshop in Action</h2>
           </div>
           <div className="grid md:grid-cols-3 gap-4">
-            <div className="rounded-2xl overflow-hidden aspect-[4/3] shadow-md">
+            <div className="relative rounded-2xl overflow-hidden aspect-[4/3] shadow-md">
               <ClientImage
                 src="/images/workshop-group.jpg"
                 alt="Workshop group activity at The Blossoming Workshop"
-                className="object-cover w-full h-full"
               />
             </div>
-            <div className="rounded-2xl overflow-hidden aspect-[4/3] shadow-md">
+            <div className="relative rounded-2xl overflow-hidden aspect-[4/3] shadow-md">
               <ClientImage
                 src="/images/workshop-participant-1.jpg"
                 alt="Workshop participant engaged in learning"
-                className="object-cover w-full h-full"
               />
             </div>
-            <div className="rounded-2xl overflow-hidden aspect-[4/3] shadow-md">
+            <div className="relative rounded-2xl overflow-hidden aspect-[4/3] shadow-md">
               <ClientImage
                 src="/images/workshop-participant-2.jpg"
                 alt="Workshop participant working through exercises"
-                className="object-cover w-full h-full"
               />
             </div>
           </div>
